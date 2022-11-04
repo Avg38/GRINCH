@@ -1,1 +1,1 @@
-# GRINCH_LARP
+# GRINCH
