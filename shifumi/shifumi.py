@@ -3,50 +3,92 @@ import random
 me = 0
 cp = 0
 
-choice_nbr_round = int(input('How many round ? '))
+choice_nbr_round = int(input('Choisi le nombre de tour : ')) 
 nbr_round = 0
 
 while nbr_round < choice_nbr_round:
 
-    user_choice = input('Choisi entre -pierre- -feuille- et -ciseaux- ')
-    if (user_choice == 'pierre' or user_choice == 'feuille' or user_choice == 'ciseaux'):
+    #aesthetic
+    print(' ')
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    user_choice = input('Choisi entre -pierre- -feuille- et -ciseaux- : ')
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(' ')
+
+    if (user_choice == 'pierre' or user_choice == 'feuille' or user_choice == 'ciseaux' or user_choice == 'puit'):
+        
         print('-------------------------------------')
 
         can_use = ['pierre','feuille','ciseaux']
         cp_choice = random.choice(can_use)
 
-        print('L\'ia a choisi : ', cp_choice)
+        print('Ton adversaire a choisi : ', cp_choice)
 
         if (user_choice == cp_choice):
-            print('Egalitée')
+            print('Ton adversaire a fais le même choix')
 
         elif (user_choice == 'pierre' and cp_choice == 'feuille'):
-            print('L\'ordi gagne !')
+            print('Looser!')
             cp += 1
         elif (user_choice == 'pierre' and cp_choice == 'ciseaux'):
-            print('Vous avez gagné !')
+            print('T\'as dead ça !')
             me += 1
         elif user_choice == 'feuille' and cp_choice == 'pierre':
-            print('Vous avez gagné !')
+            print('GG bg !')
             me += 1
         elif user_choice == 'feuille' and cp_choice == 'ciseaux':
-            print('L\'ordi gagne !')
+            print('Ton adversaire t\'as détruit !')
             cp += 1
         elif user_choice == 'ciseaux' and cp_choice == 'pierre':
-            print('L\'ordi gagne !')
+            print('tié null frréroot !')
             cp += 1
         elif user_choice == 'ciseaux' and cp_choice == 'feuille':
-            print('Vous avez gagné !')
+            print('tié devin ou quoi ?!')
+            me += 1
+        elif user_choice == 'puit' and (cp_choice == 'pierre' or cp_choice == 'ciseaux'):
+            print('OOOoh ti joues à quoi ma parole, fada va...')
+            me += 1
+        elif user_choice == 'puit' and cp_choice == 'feuille':
+            print('Ti as essayé de triché là, je té vu, c\'est raté frérot !')
+            cp += 1
+
+        nbr_round += 1
+        print('Manche numero ', nbr_round,' sur ', choice_nbr_round)
+        print('Vous avez ', me, ' points')
+        print('L\'ordi a ', cp, ' points')
+        print('-------------------------------------')
+
+    elif (user_choice == 'lezard' or user_choice == 'spock'):
+        
+        print('-------------------------------------')
+
+        can_use = ['pierre','feuille','ciseaux','lezard','spock']
+        cp_choice = random.choice(can_use)
+
+        print('Ton adversaire a choisi: ', cp_choice)
+
+        if (user_choice == cp_choice):
+            print('Egalité !')
+        elif (user_choice == 'lezard' and (cp_choice == 'pierre' or cp_choice == 'ciseaux')):
+            print('T\'essaye de faire le malin, eh beh c perdu haha !')
+            cp += 1
+        elif (user_choice == 'lezard' and (cp_choice == 'feuille' or cp_choice == 'spock')):
+            print('Bien ouaij frère !')
+            me += 1
+        elif (user_choice == 'spock' and (cp_choice == 'lezard' or cp_choice == 'feuille')):
+            print('Perduuu cheh')
+            cp += 1
+        elif (user_choice == 'spock' and (cp_choice == 'pierre' or cp_choice == 'ciseaux')):
+            print('T\'es un malin toi, bien joué, mais ne t\'avises surtout pas de recommencer')
             me += 1
 
         nbr_round += 1
         print('Manche numero ', nbr_round,' sur ', choice_nbr_round)
-
         print('Vous avez ', me, ' points')
         print('L\'ordi a ', cp, ' points')
-
+        print('-------------------------------------')
     else:
-        print('Je ne comprend pas...')
+        print('Qu\'est-ce que tu racontes, je ne comprend pas...')
 
 if(me > cp):
     print('----Partie finie sur une victoire ! (/°O°)/----')

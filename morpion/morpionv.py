@@ -1,15 +1,18 @@
 import random
 
 
-class TicTacToe:
+j1 = input('qui est le j1 : ')
+j2 = input('qui est le j2 : ')
+
+class Morpion:
 
     def __init__(self):
         self.board = []
 
-    def create_board(self):
-        for i in range(3):
+    def create_board(self, n):
+        for i in range(n):
             row = []
-            for j in range(3):
+            for j in range(n):
                 row.append('-')
             self.board.append(row)
 
@@ -21,10 +24,15 @@ class TicTacToe:
 
     def is_player_win(self, player):
         win = None
-
+        
         n = len(self.board)
+        
+        if player == j1:
+            player = 'X'
+        else:
+            player = 'O'
 
-        # checking rows
+        # check les lignes 
         for i in range(n):
             win = True
             for j in range(n):
@@ -34,7 +42,7 @@ class TicTacToe:
             if win:
                 return win
 
-        # checking columns
+        # check les colonnes
         for i in range(n):
             win = True
             for j in range(n):
@@ -44,7 +52,7 @@ class TicTacToe:
             if win:
                 return win
 
-        # checking diagonals
+        # check les diagonales
         win = True
         for i in range(n):
             if self.board[i][i] != player:
@@ -76,7 +84,7 @@ class TicTacToe:
         return True
 
     def swap_player_turn(self, player):
-        return 'X' if player == 'O' else 'O'
+        return j1 if player == j2 else j2
 
     def show_board(self):
         for row in self.board:
@@ -85,40 +93,45 @@ class TicTacToe:
             print()
 
     def start(self):
-        self.create_board()
+       
+        
+        choice_format = int(input('Choisi la taille du tableau (3, 4, 5...) : '))
+        self.create_board(choice_format)
 
-        player = 'X' if self.get_random_first_player() == 1 else 'O'
+        player = j1 if self.get_random_first_player() == 1 else j2
         while True:
-            print(f"Player {player} turn")
+            print(f"\nAu tour du joueur {player} : ")
 
             self.show_board()
 
-            # taking user input
+            # prendre la valeur du joueur
             row, col = list(
-                map(int, input("Enter row and column numbers to fix spot: ").split()))
-            print()
+                map(int, input("Choisi une ligne et une colonne : ").split()))
 
-            # fixing the spot
-            self.fix_spot(row - 1, col - 1, player)
+            # mettre le X ou le O 
+            if player == j1:
+                self.fix_spot(row - 1, col - 1, 'X')
+            else:
+                self.fix_spot(row - 1, col - 1, 'O')
 
-            # checking whether current player is won or not
+            # check si le joueur gagne
             if self.is_player_win(player):
-                print(f"Player {player} wins the game!")
+                print(f"{player} gagne!")
                 break
 
-            # checking whether the game is draw or not
+            # check si tout est remplies
             if self.is_board_filled():
-                print("Match Draw!")
+                print("Egalitée !")
                 break
 
-            # swapping the turn
+            # changement de joueur
             player = self.swap_player_turn(player)
 
-        # showing the final view of board
+        # montrer le tableau final
         print()
         self.show_board()
 
 
-# starting the game
-tic_tac_toe = TicTacToe()
-tic_tac_toe.start()
+# lance le jeu
+morpion = Morpion()
+morpion.start()
