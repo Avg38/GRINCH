@@ -15,7 +15,7 @@ while nbr_round < choice_nbr_round:
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     print(' ')
 
-    if (user_choice == 'pierre' or user_choice == 'feuille' or user_choice == 'ciseaux' or user_choice == 'puit'):
+    if (user_choice == 'pierre' or user_choice == 'feuille' or user_choice == 'ciseaux' or user_choice == 'puits', user_choice == 'volcan'):
         
         print('-------------------------------------')
 
@@ -45,12 +45,15 @@ while nbr_round < choice_nbr_round:
         elif user_choice == 'ciseaux' and cp_choice == 'feuille':
             print('tié devin ou quoi ?!')
             me += 1
-        elif user_choice == 'puit' and (cp_choice == 'pierre' or cp_choice == 'ciseaux'):
+        elif user_choice == 'puits' and (cp_choice == 'pierre' or cp_choice == 'ciseaux'):
             print('OOOoh ti joues à quoi ma parole, fada va...')
             me += 1
-        elif user_choice == 'puit' and cp_choice == 'feuille':
+        elif user_choice == 'puits' and cp_choice == 'feuille':
             print('Ti as essayé de triché là, je té vu, c\'est raté frérot !')
             cp += 1
+        elif user_choice == "volcan":
+            print("WOOOOOOW qu'est-ce tu faaaaais là, t'abuses.")
+            me += 1
 
         nbr_round += 1
         print('Manche numero ', nbr_round,' sur ', choice_nbr_round)
