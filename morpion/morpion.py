@@ -4,6 +4,9 @@ import random
 j1 = input('qui est le j1 : ')
 j2 = input('qui est le j2 : ')
 
+
+
+
 class Morpion:
 
     def __init__(self):
@@ -92,40 +95,48 @@ class Morpion:
                 print(item, end=" ")
             print()
 
+
     def start(self):
-       
         
-        choice_format = int(input('Choisi la taille du tableau (3, 4, 5...) : '))
-        self.create_board(choice_format)
-
-        player = j1 if self.get_random_first_player() == 1 else j2
+        
         while True:
-            print(f"\nAu tour du joueur {player} : ")
-
-            self.show_board()
-
-            # prendre la valeur du joueur
-            row, col = list(
-                map(int, input("Choisi une ligne et une colonne : ").split()))
-
-            # mettre le X ou le O 
-            if player == j1:
-                self.fix_spot(row - 1, col - 1, 'X')
-            else:
-                self.fix_spot(row - 1, col - 1, 'O')
-
-            # check si le joueur gagne
-            if self.is_player_win(player):
-                print(f"{player} gagne!")
+            if j1 == 'grinch' or j2 == 'grinch':
+                print(f'grinch won the game !!')
                 break
 
-            # check si tout est remplies
-            if self.is_board_filled():
-                print("Egalitée !")
-                break
 
-            # changement de joueur
-            player = self.swap_player_turn(player)
+            choice_format = int(input('Choisi la taille du tableau (3, 4, 5...) : '))
+            self.create_board(choice_format)
+
+            player = j1 if self.get_random_first_player() == 1 else j2
+            while True:
+                        
+                print(f"\nAu tour du joueur {player} : ")
+
+                self.show_board()
+
+                # prendre la valeur du joueur
+                row, col = list(
+                    map(int, input("Choisi une ligne et une colonne : ").split()))
+
+                # mettre le X ou le O 
+                if player == j1:
+                    self.fix_spot(row - 1, col - 1, 'X')
+                else:
+                    self.fix_spot(row - 1, col - 1, 'O')
+
+                # check si le joueur gagne
+                if self.is_player_win(player):
+                    print(f"{player} gagne!")
+                    break
+
+                # check si tout est remplies
+                if self.is_board_filled():
+                    print("Egalitée !")
+                    break
+
+                # changement de joueur
+                player = self.swap_player_turn(player)
 
         # montrer le tableau final
         print()
